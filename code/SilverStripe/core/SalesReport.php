@@ -2,81 +2,12 @@
 
 use Heystack\Subsystem\Core\ServiceStore;
 
-class SalesReport extends SS_Report
+class SalesReport extends Heystack_SS_Report
 {
 	function title()
 	{
 		return 'Sales Report';
 	}
-
-    
-    function parameterFields()
-	{
-		$params = new FieldSet();
-		$start = new DateField('StartDate','Start Date');
-		$start->setConfig('showcalendar',true);
-		$start->setConfig('dateformat', 'dd/MM/YYYY'); 
-
-		$end = new DateField('EndDate','End Date');
-		$end->setConfig('showcalendar',true);
-		$end->setConfig('dateformat', 'dd/MM/YYYY'); 
-
-		$params->push($start);
-		$params->push($end);
-
-		$params->push(new DropdownField('Range', 'Range', array(
-			'' => '-- Range --',
-			'Current Week' => 'Current Week',
-			'Last Week' => 'Last Week',
-			'Current Month' => 'Current Month',
-			'Last Month' => 'Last Month'
-		)));
-
-        return $params;
-	}
-    
-    public static function getTransactions()
-    {
-        
-        if (!isset($_REQUEST['Range']) || $_REQUEST['Range'] == '') {
-
-            $start = explode('/', $_REQUEST['StartDate']);
-            $start = $start[1] . '/' . $start[0] . '/' . $start[2];
-
-            $end = explode('/', $_REQUEST['EndDate']);
-            $end = $end[1] . '/' . $end[0] . '/' . $end[2];
-
-            $startDate = date('Y-m-d', strtotime($start));
-            $endDate = date('Y-m-d', strtotime($end));
-
-        } else {
-
-            switch ($_REQUEST['Range']) {
-                case 'Current Week':
-                    $startDate = date('Y-m-d', strtotime('last Monday'));
-                    $endDate = date('Y-m-d');
-                    break;
-                case 'Last Week':
-                    $week = strtotime('+1 week') - time();
-                    $startDate = date('Y-m-d', strtotime('last Monday') - $week);
-                    $endDate = date('Y-m-d', strtotime('Sunday') - $week);
-                    break;
-                case 'Current Month':
-                    $startDate = date('Y-m-d', strtotime('first day of this month'));
-                    $endDate = date('Y-m-d', strtotime('last day of this month'));
-                    break;
-                case 'Last Month':
-                    $startDate = date('Y-m-d', strtotime('first day of last month'));
-                    $endDate = date('Y-m-d', strtotime('last day of last month'));
-                    break;
-            }
-
-        }
-        
-        // TODO - lastedited for real data
-        return DataObject::get('StoredTransaction',"DATE(Created) >= '$startDate' AND DATE(Created) <= '$endDate'", 'Created');
-
-    }
     
     public static function getCurrencies()
     {
@@ -97,7 +28,8 @@ class SalesReport extends SS_Report
 
 		if (!isset($content)) {
 
-            $transactions = self::getTransactions();
+            $period = self::getPeriod();
+            $transactions = DataObject::get('Storedtransaction', $period, 'Created');
             
             $currencies = self::getCurrencies();
             
@@ -141,8 +73,10 @@ class SalesReport_Controller extends LeftAndMain
     public function getTotalOrderData()
     {
         
-        $transactions = SalesReport::getTransactions();
-
+        $period = SalesReport::getPeriod();
+        
+        $transactions = DataObject::get('StoredTransaction', $period, 'Created');
+        
         $data = array();
         
         if ($transactions) {
@@ -170,7 +104,9 @@ class SalesReport_Controller extends LeftAndMain
     public function getTotalSpentData()
     {
         
-        $transactions = SalesReport::getTransactions();
+        $period = SalesReport::getPeriod();
+        
+        $transactions = DataObject::get('StoredTransaction', $period, 'Created');
         
         $currency = $this->URLParams['ID'];
 
