@@ -109,6 +109,24 @@
 		</tr>
 		<% end_control %>
 	</table>
+	
+	<h2>Fusion Payment</h2>
+	<table>
+
+		<tr>
+			<td><h3>Transaction ID</h3></td>
+			<td><h3>Total</h3></td>
+			<td><h3>Status</h3></td>
+
+		</tr>
+		<% control FusionPayment %>
+		<tr>	
+			<td>$TransactionId</td>
+			<td>$Amount</td>
+			<td>$Status</td>
+		</tr>
+		<% end_control %>
+	</table>
 
 	<h2>Vouchers</h2>
 	<table>
