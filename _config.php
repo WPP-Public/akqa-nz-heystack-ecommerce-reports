@@ -18,4 +18,3 @@ ReportAdmin::require_javascript('ecommerce-reports/code/SilverStripe/themes/ecom
 
 ReportAdmin::require_css('ecommerce-reports/code/SilverStripe/themes/ecommerce/css/report.css');
 
-Director::addRules(50, array(TransactionReport_Controller::$url_segment.'/$Action/$ID/$Type' => 'TransactionReport_Controller'));
