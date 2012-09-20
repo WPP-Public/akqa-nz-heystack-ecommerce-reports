@@ -2,6 +2,7 @@
 .heystack-reports tr {}
 .heystack-reports td {min-width: 30px; padding: 5px; border: dotted 1px #cfcfcf;}
 .heystack-reports .legend {margin: 0 auto; width: 330px; margin-top: 30px;}
+.heystack-reports .page-break{page-break-after: always; display: block;}
 
 .heystack-reports.vertical .xAxis > .tickLabel 
 {

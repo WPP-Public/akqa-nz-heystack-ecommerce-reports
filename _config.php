@@ -6,7 +6,7 @@ define('ECOMMERCE_REPORTS_BASE_PATH', __DIR__);
 
 // ------------------------------- REPORTS ---------------------------------- //
 SS_Report::register("ReportAdmin", "SalesReport");
-SS_Report::register("ReportAdmin", "TransactionReport");
+SS_Report::register("ReportAdmin", "TransactionInformationReport");
 
 // ------------------------------- CHARTS ----------------------------------- //
 
@@ -17,3 +17,5 @@ ReportAdmin::require_javascript('ecommerce-reports/code/SilverStripe/themes/ecom
 ReportAdmin::require_javascript('ecommerce-reports/code/SilverStripe/themes/ecommerce/js/charts.js');
 
 ReportAdmin::require_css('ecommerce-reports/code/SilverStripe/themes/ecommerce/css/report.css');
+
+Director::addRules(50, array(TransactionReport_Controller::$url_segment.'/$Action/$ID/$Type' => 'TransactionReport_Controller'));

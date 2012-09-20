@@ -2,11 +2,11 @@
 
 use Heystack\Subsystem\Core\ServiceStore;
 
-class TransactionReport extends SS_Report
+class TransactionInformationReport extends SS_Report
 {
 	function title()
 	{
-		return 'Transaction Report';
+		return 'Transaction Information';
 	}
 
     
@@ -23,6 +23,7 @@ class TransactionReport extends SS_Report
     {
         
         $transactionID = $_REQUEST['TransactionID'];
+        
         
         // TODO - lastedited for real data
         return DataObject::get_by_id('StoredTransaction', $transactionID);
@@ -41,7 +42,7 @@ class TransactionReport extends SS_Report
 		if (!isset($content)) {
 
             $transaction = self::getTransaction();
-           
+            $dos = new DataObjectSet();
 
             if ($transaction && $transaction->exists()) {
 
@@ -57,16 +58,20 @@ class TransactionReport extends SS_Report
                 $postPayment = DataObject::get_by_id('StoredPXPostPayment', $fusionPayment->PXPostPaymentID);
 
                 $render = new ViewableData();	
+                
+                $transaction->ProductHolder = $productHolder;
+                $transaction->Products = $products;
+                $transaction->VoucherHolder = $voucherHolder;
+                $transaction->Voucher = $vouchers;
+                $transaction->Shipping = $shipping;
+                $transaction->FusionPayment = $fusionPayment;
+                $transaction->PostPayment = $postPayment;
+                
+                
+                $dos->push($transaction);
 
-                $content = $render->renderWith('TransactionReport',array(
-                    'Transaction' => $transaction,
-                    'ProductHolder' => $productHolder,
-                    'Products' => $products,
-                    'VoucherHolder' => $voucherHolder,
-                    'Vouchers' => $vouchers,
-                    'Shipping' => $shipping,
-                    'FusionPayment' => $fusionPayment,
-                    'PostPayment' => $postPayment,
+                $content = $render->renderWith('TransactionInformationReport',array(
+                    'Transactions' => $dos
                 ));
                 
             } else {
@@ -80,11 +85,4 @@ class TransactionReport extends SS_Report
 		return new LiteralField('ReportContent', $content);
 	}
 
-}
-
-class TransactionReport_Controller extends LeftAndMain
-{
-   
-
-    
 }
