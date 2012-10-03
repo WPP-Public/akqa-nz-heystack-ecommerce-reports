@@ -1,0 +1,14 @@
+.heystack-reports table {border: 1px solid #cacaca;}
+.heystack-reports tr {}
+.heystack-reports td {min-width: 30px; padding: 5px; border: dotted 1px #cfcfcf;}
+.heystack-reports .legend {margin: 0 auto; width: 330px; margin-top: 30px;}
+.heystack-reports .page-break{page-break-after: always; display: block;}
+
+.heystack-reports.vertical .xAxis > .tickLabel 
+{
+    margin-top:30px;
+    -moz-transform:rotate(-90deg);
+    -o-transform:rotate(-90deg);
+    -webkit-transform:rotate(-90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
