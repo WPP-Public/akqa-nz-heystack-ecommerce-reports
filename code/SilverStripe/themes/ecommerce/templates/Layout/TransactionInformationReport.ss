@@ -118,24 +118,23 @@
 				
 			</table>
 
-			<% if Vouchers %>
 			<h2>Vouchers</h2>
 			<table>
-
 				<tr>
 					<td><h3>Code</h3></td>
 					<td><h3>Value</h3></td>
 
 				</tr>
-				<% control Vouchers %>
 				<tr>	
+				<% control Vouchers %>
 					<td>$Code</td>
-					<td>$Value</td>
-				</tr>
 				<% end_control %>
+				<% control VoucherHolder %>
+					<td>$Total</td>
+				<% end_control %>
+				</tr>
 				
 			</table>
-			<% end_if %>
 			
 			<% if Last %><% else %><div class="page-break"></div><% end_if %>
 			

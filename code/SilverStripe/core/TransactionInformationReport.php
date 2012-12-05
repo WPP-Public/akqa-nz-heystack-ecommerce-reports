@@ -50,7 +50,7 @@ class TransactionInformationReport extends SS_Report
                 $products = DataObject::get('StoredProduct', "ParentID = '" . $productHolder->ID . "'");
                 
                 $voucherHolder = DataObject::get_one('StoredVoucherHolder', "ParentID = '" . $transaction->ID . "'");
-                $vouchers = DataObject::get('StoredVoucher', "ParentID = '" . $voucherHolder->ID . "'");
+                $vouchers = DataObject::get('StoredVoucher', "ParentID = '" . $transaction->ID . "'");
                 
                 $shipping = DataObject::get_one('StoredShipping', "ParentID = '" . $transaction->ID . "'");
                 
@@ -62,7 +62,7 @@ class TransactionInformationReport extends SS_Report
                 $transaction->ProductHolder = $productHolder;
                 $transaction->Products = $products;
                 $transaction->VoucherHolder = $voucherHolder;
-                $transaction->Voucher = $vouchers;
+                $transaction->Vouchers = $vouchers;
                 $transaction->Shipping = $shipping;
                 $transaction->FusionPayment = $fusionPayment;
                 $transaction->PostPayment = $postPayment;
