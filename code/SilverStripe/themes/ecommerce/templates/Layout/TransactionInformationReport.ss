@@ -52,15 +52,18 @@
 				</tr>
 				<% end_control %>
 				<tr>
+					<td><h3>Special Instructions</h3></td>
 					<td><h3>Gift</h3></td>
 					<td colspan="8"><h3>Gift Message</h3></td>
 				</tr>
 				<% control Shipping %>
 				<tr>
+					<td>$Instructions</td>
 					<td><% if IsGift %>Yes<% else %>No<% end_if %></td>
 					<td colspan="8">$GiftMessage</td>
 				</tr>
 				<% end_control %>
+				
 			</table>
 
 			<h2>Billing</h2>
