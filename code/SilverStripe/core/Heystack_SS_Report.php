@@ -31,8 +31,12 @@ class Heystack_SS_Report extends SS_Report
 
         return $params;
 	}
-    
-    public static function getPeriod()
+
+    /**
+     * @param string $tableName - Date field to use for record selection
+     * @return string SQL
+     */
+    public static function getPeriod($field = 'Created')
     {
         
         if (!isset($_REQUEST['Range']) || $_REQUEST['Range'] == '') {
@@ -86,7 +90,7 @@ class Heystack_SS_Report extends SS_Report
 
         }
 
-        return "DATE(Created) >= '$startDate' AND DATE(Created) <= '$endDate'";
+        return "DATE($field) >= '$startDate' AND DATE($field) <= '$endDate'";
 
     }
     
