@@ -75,18 +75,17 @@ class Heystack_SS_Report extends SS_Report
                     $endDate = date('Y-m-d', strtotime('last day of last month'));
                     break;
                 case 'Current Year':
-                    $startDate = date('Y-m-d', strtotime('first day of this year'));
-                    $endDate = date('Y-m-d', strtotime('today'));
+                    $startDate = date('Y-01-01');
+                    $endDate = date('Y-12-31');
                     break;
                 case 'All Time':
-                    $startDate = date('Y-m-d', strtotime('1st January 1970'));
+                    $startDate = date('Y-m-d', 0);
                     $endDate = date('Y-m-d', strtotime('today'));
                     break;
             }
 
         }
-        
-        
+
         return "DATE(Created) >= '$startDate' AND DATE(Created) <= '$endDate'";
 
     }
