@@ -1,44 +1,50 @@
 <?php
 
+/**
+ * Class Heystack_SS_Report
+ */
 class Heystack_SS_Report extends SS_Report
 {
-    
-    function parameterFields()
-	{
-		$params = new FieldSet();
-		$start = new DateField('StartDate','Start Date');
-		$start->setConfig('showcalendar',true);
-		$start->setConfig('dateformat', 'dd/MM/YYYY'); 
-
-		$end = new DateField('EndDate','End Date');
-		$end->setConfig('showcalendar',true);
-		$end->setConfig('dateformat', 'dd/MM/YYYY'); 
-
-		$params->push($start);
-		$params->push($end);
-
-		$params->push(new DropdownField('Range', 'Range', array(
-			'' => '-- Range --',
-			'Today' => 'Today',
-			'Yesterday' => 'Yesterday',
-			'Current Week' => 'Current Week',
-			'Last Week' => 'Last Week',
-			'Current Month' => 'Current Month',
-			'Last Month' => 'Last Month',
-			'Current Year' => 'Current Year',
-			'All Time' => 'All Time',
-		)));
-
-        return $params;
-	}
 
     /**
-     * @param string $tableName - Date field to use for record selection
-     * @return string SQL
+     * @return FieldSet
+     */
+    function parameterFields()
+    {
+        $params = new FieldList();
+        $start = new DateField('StartDate', 'Start Date');
+        $start->setConfig('showcalendar', true);
+        $start->setConfig('dateformat', 'dd/MM/YYYY');
+
+        $end = new DateField('EndDate', 'End Date');
+        $end->setConfig('showcalendar', true);
+        $end->setConfig('dateformat', 'dd/MM/YYYY');
+
+        $params->push($start);
+        $params->push($end);
+
+        $params->push(new DropdownField('Range', 'Range', array(
+            '' => '-- Range --',
+            'Today' => 'Today',
+            'Yesterday' => 'Yesterday',
+            'Current Week' => 'Current Week',
+            'Last Week' => 'Last Week',
+            'Current Month' => 'Current Month',
+            'Last Month' => 'Last Month',
+            'Current Year' => 'Current Year',
+            'All Time' => 'All Time',
+        )));
+
+        return $params;
+    }
+
+    /**
+     * @param string $field
+     * @return string
      */
     public static function getPeriod($field = 'Created')
     {
-        
+
         if (!isset($_REQUEST['Range']) || $_REQUEST['Range'] == '') {
 
             $start = explode('/', $_REQUEST['StartDate']);
@@ -93,7 +99,6 @@ class Heystack_SS_Report extends SS_Report
         return "DATE($field) >= '$startDate' AND DATE($field) <= '$endDate'";
 
     }
-    
-   
+
 
 }
