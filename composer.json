@@ -1,19 +1,20 @@
 {
-    "name": "heystack/ecommerce-reports",
-    "type": "silverstripe-module",
-    "require": {        
-        "php": ">=5.4.0",
-        "composer/installers": "~1.0.0"
-    },
-    "autoload": {
-        "psr-0": {
-            "Heystack": "code/"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.0.x-dev",
-            "dev-1.0": "1.0.x-dev"
-        }
-    }
+	"name": "heystack/ecommerce-reports",
+	"type": "silverstripe-module",
+	"require": {
+		"php": ">=5.4.0",
+		"composer/installers": "~1.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Heystack\\Reports\\": "src/"
+		}
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "3.0.x-dev",
+			"dev-2.0": "2.0.x-dev",
+			"dev-1.0": "1.0.x-dev"
+		}
+	}
 }

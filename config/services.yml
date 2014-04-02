@@ -1,0 +1,8 @@
+services:
+  reports:
+    class: Heystack\Reports\ReportService
+    tags:
+        - { name: autoinject }
+        
+  report_created_modifier:
+    class: Heystack\Reports\Modifiers\CreatedModifier

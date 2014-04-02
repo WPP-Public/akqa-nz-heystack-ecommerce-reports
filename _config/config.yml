@@ -1,0 +1,11 @@
+---
+Name: reports
+---
+SS_Report:
+  excluded_reports:
+    - Heystack\Reports\Report
+    
+Injector:
+  Heystack\Reports\EcommerceReportAdmin:
+    constructor:
+      0: %$heystack?reports
