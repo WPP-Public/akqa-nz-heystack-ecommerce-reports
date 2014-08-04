@@ -25,10 +25,10 @@ class Report extends \SS_Report
     protected $identifier;
 
     /**
-     * @param $identifier
-     * @param $dataClass
-     * @param $title
-     * @param null $description
+     * @param string $identifier
+     * @param string $dataClass
+     * @param string $title
+     * @param string|void $description
      */
     public function __construct(
         $identifier,
@@ -67,6 +67,7 @@ class Report extends \SS_Report
 
     /**
      * @param \Heystack\Reports\Interfaces\ReportModifierInterface $reportModifier
+     * @return void
      */
     public function addReportModifier(ReportModifierInterface $reportModifier)
     {
@@ -105,7 +106,7 @@ class Report extends \SS_Report
     }
 
     /**
-     * @param $params
+     * @param array $params
      * @return \DataList
      */
     public function sourceRecords($params)

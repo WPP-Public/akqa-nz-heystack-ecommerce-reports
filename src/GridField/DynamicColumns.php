@@ -5,6 +5,9 @@ namespace Heystack\Reports\GridField;
 use DataObject;
 use GridField;
 
+/**
+ * @package Heystack\Reports\GridField
+ */
 class DynamicColumns implements \GridField_ColumnProvider
 {
     /**
@@ -23,8 +26,8 @@ class DynamicColumns implements \GridField_ColumnProvider
     protected $functions = [];
 
     /**
-     * @param $column
-     * @param $title
+     * @param string $column
+     * @param string $title
      * @param callable $function
      * @return \Heystack\Reports\GridField\DynamicColumns
      */
@@ -43,8 +46,9 @@ class DynamicColumns implements \GridField_ColumnProvider
      * @see {@link GridFieldDataColumns->getDisplayFields()}
      * @see {@link GridFieldDataColumns}.
      *
-     * @param GridField $gridField
+     * @param \GridField $gridField
      * @param array - List reference of all column names.
+     * @return void
      */
     public function augmentColumns($gridField, &$columns)
     {
@@ -56,7 +60,7 @@ class DynamicColumns implements \GridField_ColumnProvider
     /**
      * Names of all columns which are affected by this component.
      *
-     * @param GridField $gridField
+     * @param \GridField $gridField
      * @return array
      */
     public function getColumnsHandled($gridField)
@@ -94,7 +98,7 @@ class DynamicColumns implements \GridField_ColumnProvider
      * Additional metadata about the column which can be used by other components,
      * e.g. to set a title for a search column header.
      *
-     * @param GridField $gridField
+     * @param \GridField $gridField
      * @param string $columnName
      * @return array - Map of arbitrary metadata identifiers to their values.
      */

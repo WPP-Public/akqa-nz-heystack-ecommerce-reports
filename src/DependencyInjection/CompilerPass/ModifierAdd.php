@@ -6,10 +6,14 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
+/**
+ * @package Heystack\Reports\DependencyInjection\CompilerPass
+ */
 class ModifierAdd implements CompilerPassInterface
 {
     /**
-     * @param ContainerBuilder $container
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @return void
      */
     public function process(ContainerBuilder $container)
     {

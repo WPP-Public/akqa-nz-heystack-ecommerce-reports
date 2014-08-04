@@ -7,11 +7,15 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
+/**
+ * @package Heystack\Reports\DependencyInjection
+ */
 class ContainerExtension extends Extension
 {
     /**
      * @param array $config
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @return void
      */
     public function load(array $config, ContainerBuilder $container)
     {

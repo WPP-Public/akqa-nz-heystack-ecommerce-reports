@@ -16,6 +16,7 @@ class ReportService
 
     /**
      * @param \Heystack\Reports\Report $report
+     * @return void
      */
     public function addReport(Report $report)
     {

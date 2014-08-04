@@ -84,6 +84,7 @@ class CreatedModifier implements ReportModifierInterface
      * @param \FieldList $parameterFields
      * @param array $filters
      * @param \SS_HTTPRequest $request
+     * @return void
      */
     public function modifyParameterFields(\FieldList $parameterFields, array $filters, \SS_HTTPRequest $request)
     {
